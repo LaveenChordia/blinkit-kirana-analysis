@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blinkit vs. Kirana Stores Analysis</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Sticky Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Data Project</div>
+      <ul class="nav-links">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#baskets">Baskets</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Is Blinkit Actually More Expensive?</h1>
+      <p>A data-driven comparison of 60 everyday products across Blinkit and local kirana stores.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn btn-primary">Explore the Data</a>
+        <a href="#conclusion" class="btn btn-secondary">View Our Conclusion</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Executive Summary -->
+    <section id="overview" class="section">
+      <div class="kpi-grid">
+        <div class="card kpi-card">
+          <h3>60</h3>
+          <p>Products Compared</p>
+        </div>
+        <div class="card kpi-card">
+          <h3>₹123.30</h3>
+          <p>Average Kirana Price</p>
+        </div>
+        <div class="card kpi-card">
+          <h3>₹122.65</h3>
+          <p>Average Blinkit Price</p>
+        </div>
+        <div class="card kpi-card highlight-kpi">
+          <h3>73.3%</h3>
+          <p>Cheaper or Same on Blinkit</p>
+        </div>
+      </div>
+      <div class="highlight-statement">
+        "Blinkit is not universally expensive — the overall average prices in our sample are almost identical."
+      </div>
+    </section>
+
+    <!-- Research Question -->
+    <section class="section">
+      <div class="card">
+        <h2>Research Question</h2>
+        <p class="lead">"Is buying everyday products through Blinkit significantly more expensive than purchasing the same or comparable products from local kirana stores?"</p>
+        <p>This project evaluates:</p>
+        <ul>
+          <li>Product-level prices</li>
+          <li>Category-level differences</li>
+          <li>Basket-level prices</li>
+          <li>Convenience/time</li>
+          <li>Statistical significance</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Overall Price Comparison & Outcomes -->
+    <section id="analysis" class="section grid-2">
+      <div class="card">
+        <h2>Overall Price Comparison</h2>
+        <div class="chart-container">
+          <canvas id="overallChart"></canvas>
+        </div>
+        <p class="chart-caption">The average difference is only ₹0.65, suggesting that Blinkit does not carry a large overall price premium in this sample.</p>
+      </div>
+      <div class="card">
+        <h2>Product Outcome Analysis</h2>
+        <div class="chart-container">
+          <canvas id="outcomeChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>73.3% of the products were either cheaper or equally priced on Blinkit.</strong> This does not mean Blinkit is cheaper for every product. Individual product prices vary substantially.</p>
+      </div>
+    </section>
+
+    <!-- Statistical Analysis -->
+    <section class="section">
+      <div class="card stat-card">
+        <h2>Statistical Analysis (Paired t-test)</h2>
+        <div class="stat-grid">
+          <div><strong>H₀:</strong> Mean Blinkit price difference = 0</div>
+          <div><strong>H₁:</strong> Mean Blinkit price difference ≠ 0</div>
+          <div><strong>t:</strong> ≈ -0.120</div>
+          <div><strong>p:</strong> 0.905</div>
+          <div class="stat-conclusion"><strong>Conclusion:</strong> Fail to reject H₀ at α = 0.05</div>
+        </div>
+        <p class="chart-caption">"Our sample does not provide statistically significant evidence that Blinkit prices are systematically higher or lower than kirana prices."</p>
+      </div>
+    </section>
+
+    <!-- Product-Level Price Difference -->
+    <section class="section">
+      <div class="card">
+        <h2>Product-Level Price Difference (Blinkit - Kirana)</h2>
+        <p class="chart-caption">Negative values = Blinkit cheaper | Zero = same price | Positive values = Blinkit more expensive</p>
+        <div class="scrollable-chart">
+          <div class="chart-container" style="height: 1000px;">
+            <canvas id="differenceChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category & Basket Analysis -->
+    <section id="categories" class="section grid-2">
+      <div class="card">
+        <h2>Category Analysis</h2>
+        <div class="chart-container">
+          <canvas id="categoryChart"></canvas>
+        </div>
+        <p class="chart-caption">Category-level differences are descriptive and should not automatically be treated as statistically significant.</p>
+      </div>
+      <div class="card" id="baskets">
+        <h2>Basket Analysis</h2>
+        <div class="chart-container">
+          <canvas id="basketChart"></canvas>
+        </div>
+        <p class="chart-caption"><strong>3 out of 4 baskets were cheaper on Blinkit.</strong> Customers typically purchase multiple products together, so basket-level cost can be more useful than the price of a single product.</p>
+      </div>
+    </section>
+
+    <!-- Convenience / Time Analysis -->
+    <section class="section">
+      <div class="card time-card">
+        <h2>Price Isn't the Only Cost — Time Matters</h2>
+        <div class="time-grid">
+          <div class="time-item"><span>18 min</span><small>Delivery Time</small></div>
+          <div class="time-item"><span>₹200/hr</span><small>Assumed Value of Time</small></div>
+          <div class="time-item"><span>₹60</span><small>Value of 18 mins</small></div>
+        </div>
+        <div class="calculation-box">
+          <div class="calc-col">
+            <h3>Blinkit Cost</h3>
+            <p>Order: ₹1,375</p>
+            <p>Handling: ₹10</p>
+            <p>Delivery: ₹0</p>
+            <p>Time Value: ₹60</p>
+            <hr>
+            <h4>Total: ₹1,445</h4>
+          </div>
+          <div class="calc-col">
+            <h3>Kirana Cost</h3>
+            <p>Basket Total</p>
+            <br><br><br>
+            <hr>
+            <h4>Total: ₹1,719</h4>
+          </div>
+        </div>
+        <h3 class="highlight-text">Estimated advantage for Blinkit: ₹274</h3>
+        <p class="chart-caption">The ₹200/hour time valuation is an analytical assumption. Commute time was not systematically measured for every product, making this an illustrative analysis.</p>
+      </div>
+    </section>
+
+    <!-- Interactive Product Explorer -->
+    <section id="products" class="section">
+      <div class="card">
+        <h2>Interactive Product Explorer</h2>
+        <div class="controls">
+          <input type="text" id="searchInput" placeholder="Search products...">
+          <select id="categoryFilter">
+            <option value="All">All Categories</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Staples">Staples</option>
+            <option value="Basic Stationery">Stationery</option>
+            <option value="Personal Care">Personal Care</option>
+          </select>
+          <select id="resultFilter">
+            <option value="All">All Results</option>
+            <option value="Blinkit cheaper">Blinkit Cheaper</option>
+            <option value="Same">Same Price</option>
+            <option value="Kirana cheaper">Kirana Cheaper</option>
+          </select>
+        </div>
+        <div class="table-responsive">
+          <table id="productTable">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th class="sortable" data-sort="kirana">Kirana (₹) ⇕</th>
+                <th class="sortable" data-sort="blinkit">Blinkit (₹) ⇕</th>
+                <th class="sortable" data-sort="diff">Diff (₹) ⇕</th>
+                <th>Premium %</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section id="conclusion" class="section">
+      <div class="card conclusion-card">
+        <h2>So, Is Blinkit Expensive?</h2>
+        <h3 class="highlight-text">Not necessarily.</h3>
+        <ol class="conclusion-list">
+          <li><strong>Blinkit is not universally expensive:</strong> Average prices were almost identical (₹122.65 vs ₹123.30).</li>
+          <li><strong>Individual products vary:</strong> Some products are considerably cheaper on Blinkit, while others are cheaper at kirana stores.</li>
+          <li><strong>The basket and convenience matter:</strong> Three of four baskets were cheaper on Blinkit, and the convenience-adjusted example remained cheaper after accounting for handling charges and an assumed value of saved time.</li>
+        </ol>
+        <div class="final-statement">
+          <p>Don't ask: "Is Blinkit expensive?"</p>
+          <p><strong>Ask: "Is MY BASKET cheaper on Blinkit — and how much is my time worth?"</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Limitations -->
+    <section class="section">
+      <div class="card limitations">
+        <h2>Limitations</h2>
+        <ul>
+          <li>Sample contains 60 products. Prices can change over time.</li>
+          <li>Product availability and pack sizes/brands can vary, affecting comparisons.</li>
+          <li>Blinkit fees can vary by order, location, and time.</li>
+          <li>The ₹200/hour time value is an assumption. Kirana commute time was not systematically measured.</li>
+          <li>The findings apply to this specific sample and should not be generalized to every Blinkit order or every kirana store.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+  
+  <footer>
+    <p>University Statistics Data Project | Built using pure HTML, CSS, and JS</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
